@@ -42,9 +42,9 @@ class AbstractLayer:
 
     def backward_and_update(self, gradients, optimizer):
         gradients = self.internal_backward(self.inputs, (gradients,))
-        input_gradient = gradients[0]
-        parameter_gradients = gradients[1:]
+        input_gradient = gradients[:len(self.inputs)]
+        parameter_gradients = gradients[len(self.inputs):]
         if len(parameter_gradients) > 0:
             parameter_deltas = optimizer.run_update_rule(parameter_gradients)
             self.internal_update(parameter_deltas)
-        return input_gradient,
+        return input_gradient
