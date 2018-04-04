@@ -5,7 +5,7 @@ from length.constants import DTYPE
 from length.initializers.xavier import Xavier
 
 
-class FullyConnectedLayer(AbstractLayer):
+class FullyConnected(AbstractLayer):
     """
     Abstract Layer is a super class for all neural network layers
     """

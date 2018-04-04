@@ -2,7 +2,7 @@ import argparse
 import numpy as np
 
 from length.graph import Graph
-from length.layers.fully_connected import FullyConnectedLayer
+from length.layers.fully_connected import FullyConnected
 from length.layers.softmax_cross_entropy import SoftmaxCrossEntropy
 from length.optimizers.sgd import SGD
 
@@ -12,9 +12,9 @@ def main(args):
     data = np.random.random((10, 784))
     labels = np.zeros((10,), dtype=np.int32)
 
-    fully_connected_1 = FullyConnectedLayer(784, 100)
-    fully_connected_2 = FullyConnectedLayer(100, 100)
-    fully_connected_3 = FullyConnectedLayer(100, 10)
+    fully_connected_1 = FullyConnected(784, 100)
+    fully_connected_2 = FullyConnected(100, 100)
+    fully_connected_3 = FullyConnected(100, 10)
     loss_layer = SoftmaxCrossEntropy()
     optimizer = SGD(0.001)
 
