@@ -2,6 +2,7 @@ import numpy as np
 
 from length.abstract_layer import AbstractLayer
 from length.constants import DTYPE
+from length.initializers.xavier import Xavier
 
 
 class FullyConnectedLayer(AbstractLayer):
@@ -9,11 +10,11 @@ class FullyConnectedLayer(AbstractLayer):
     Abstract Layer is a super class for all neural network layers
     """
 
-    def __init__(self, num_inputs, num_outputs):
+    def __init__(self, num_inputs, num_outputs, weight_init=Xavier()):
         super().__init__()
 
         self.weights = np.zeros((num_outputs, num_inputs,), dtype=DTYPE)
-        # Todo: initialize weight matrix
+        weight_init(self.weights)
         self.bias = np.zeros((num_outputs,), dtype=DTYPE)
 
     def internal_forward(self, inputs):
