@@ -7,6 +7,7 @@ class AbstractLayer:
     """
     def __init__(self):
         self.inputs = None
+        self.outputs = None
 
     def internal_forward(self, inputs):
         """
@@ -31,16 +32,19 @@ class AbstractLayer:
         raise NotImplementedError
 
     def forward(self, graphs):
-        self.inputs = (graph.data for graph in graphs)
-        outputs = self.internal_forward(self.inputs)
-        our_graph = Graph(outputs, predecessors=graphs, creator=self)
-        return our_graph
+        self.inputs = tuple(graph.data for graph in graphs)
+        self.outputs = self.internal_forward(self.inputs)
+
+        output_graphs = [Graph(output, predecessors=graphs, creator=self) for output in self.outputs]
+        if len(output_graphs) == 1:
+            return output_graphs[0]
+        return output_graphs
 
     def backward_and_update(self, gradients, optimizer):
-        gradients = self.internal_backward(self.inputs, gradients)
+        gradients = self.internal_backward(self.inputs, (gradients,))
         input_gradient = gradients[0]
         parameter_gradients = gradients[1:]
-        parameter_deltas = optimizer.run_update_rule(parameter_gradients)
-        self.internal_update(parameter_deltas)
-        return input_gradient
-
+        if len(parameter_gradients) > 0:
+            parameter_deltas = optimizer.run_update_rule(parameter_gradients)
+            self.internal_update(parameter_deltas)
+        return input_gradient,
