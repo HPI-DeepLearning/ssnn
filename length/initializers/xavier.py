@@ -1,11 +1,12 @@
 import numpy as np
 
-from length.abstract_initializer import AbstractInitializer
+from length.initializer import Initializer
 
 
-class Xavier(AbstractInitializer):
+class Xavier(Initializer):
     """
-    Xavier initializer
+    Xavier initializer that initializes weights following the initialization scheme proposed in:
+    http://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf?hc_location=ufi
     """
 
     def __init__(self, scale=1.0):
