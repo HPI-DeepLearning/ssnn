@@ -24,3 +24,7 @@ class SoftmaxCrossEntropy(Function):
         grad_x[range(len(t)), t] -= 1
         grad_x *= grad_in[0] / t.size
         return grad_x, None
+
+
+def softmax_cross_entropy(x, t):
+    return SoftmaxCrossEntropy()(x, t)

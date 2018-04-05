@@ -1,7 +1,7 @@
 import numpy as np
 
 from length import constants
-from length.functions import Sum
+from length.functions.sum import Sum, sum
 from length.graph import Graph
 from length.tests.gradient_checker import compute_numerical_gradient, assert_allclose
 
@@ -9,8 +9,7 @@ from length.tests.gradient_checker import compute_numerical_gradient, assert_all
 def test_sum_forward():
     data = np.random.uniform(-1, 1, (3, 2)).astype(constants.DTYPE)
 
-    sum_function = Sum()
-    sum_output = sum_function(Graph(data))
+    sum_output = sum(Graph(data))
     np.testing.assert_allclose(sum_output.data, data.sum())
 
 
