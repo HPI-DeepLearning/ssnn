@@ -2,7 +2,7 @@ import os
 import shutil
 import pytest
 
-from data_sets.mnist import Mnist
+from data_sets import Mnist
 
 
 temp_folder = ".temp"
