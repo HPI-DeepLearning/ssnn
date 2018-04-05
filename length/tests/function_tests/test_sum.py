@@ -3,7 +3,7 @@ import numpy as np
 from length import constants
 from length.functions.sum import Sum, sum
 from length.graph import Graph
-from length.tests.gradient_checker import compute_numerical_gradient, assert_allclose
+from length.tests import gradient_checker
 
 
 def test_sum_forward():
@@ -23,6 +23,6 @@ def test_sum_backward():
     computed_gradients, = sum_function.backward((gradient,))
 
     f = lambda: sum_function.internal_forward((data,))
-    numerical_gradients, = compute_numerical_gradient(f, (data,), (gradient,))
+    numerical_gradients, = gradient_checker.compute_numerical_gradient(f, (data,), (gradient,))
 
-    assert_allclose(computed_gradients, numerical_gradients, atol=1e-4, rtol=1e-3)
+    gradient_checker.assert_allclose(computed_gradients, numerical_gradients, atol=1e-4, rtol=1e-3)
