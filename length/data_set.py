@@ -1,9 +1,7 @@
+from collections import namedtuple
 
 
-class Batch:
-    def __init__(self, data, labels):
-        self.data = data
-        self.labels = labels
+Batch = namedtuple("Batch", ("data", "labels"))
 
 
 class DataSet:

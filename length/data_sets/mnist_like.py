@@ -8,10 +8,17 @@ from data_set import DataSet, Batch
 
 
 class MnistLike(DataSet):
-    def __init__(self, data_url, name, batch_size, load_train=True, load_test=True, delay_loading=False, **kwargs):
+    """
+    Class for all data sets which are in the same format as MNIST
+    """
+    name = None
+    url = None
+
+    def __init__(self, batch_size, dimensions=1, load_train=True, load_test=True, delay_loading=False, **kwargs):
         super().__init__(batch_size, **kwargs)
-        self.data_url = data_url
-        self.path = os.path.join(".data", name)
+        self.data_url = self.url
+        self.path = os.path.join(".data", self.name)
+        self.dimensions = dimensions
 
         self.load_train = load_train
         self.load_test = load_test
@@ -74,6 +81,10 @@ class MnistLike(DataSet):
                 dimensions = int(binary_magic[6:], 16)
                 shape = struct.unpack(">" + "I" * dimensions, handle.read(4 * dimensions))
                 data = np.fromstring(handle.read(), dtype=np.int8)
+                if dimensions > self.dimensions:
+                    shape = shape[0:1] + (int(np.prod(shape[1:])),)
+                if dimensions < self.dimensions:
+                    shape = shape[0] + [1] + [shape[1:]]
                 setattr(self, target, data.reshape(shape))
 
     def check_sanity(self):
