@@ -29,7 +29,8 @@ def main(args):
             loss.backward(optimizer)
 
             if iteration % 50 == 0:
-                print(epoch, iteration, loss.data)
+                accuracy = F.accuracy(h, label_graph)
+                print(epoch, iteration, loss.data, accuracy.data)
 
 
 if __name__ == "__main__":
