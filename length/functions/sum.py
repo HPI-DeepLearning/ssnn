@@ -1,9 +1,9 @@
 import numpy as np
 
-from length.abstract_layer import AbstractLayer
+from length.function import Function
 
 
-class Sum(AbstractLayer):
+class Sum(Function):
     """
     Abstract Layer is a super class for all neural network layers
     """
@@ -21,9 +21,3 @@ class Sum(AbstractLayer):
         grad_x = np.full_like(x, grad_in)
         assert grad_x.shape == x.shape
         return grad_x,
-
-    def internal_update(self, parameter_deltas):
-        pass
-
-    def __call__(self, x):
-        return self.forward((x,))

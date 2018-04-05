@@ -1,11 +1,11 @@
 import numpy as np
 
-from length.abstract_layer import AbstractLayer
+from length.layer import Layer
 from length.constants import DTYPE
 from length.initializers.xavier import Xavier
 
 
-class FullyConnected(AbstractLayer):
+class FullyConnected(Layer):
     """
     Abstract Layer is a super class for all neural network layers
     """
@@ -38,6 +38,3 @@ class FullyConnected(AbstractLayer):
         delta_w, delta_b = parameter_deltas
         self.weights -= delta_w
         self.bias -= delta_b
-
-    def __call__(self, x):
-        return self.forward((x,))

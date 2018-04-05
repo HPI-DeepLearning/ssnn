@@ -1,10 +1,13 @@
 from length.graph import Graph
 
 
-class AbstractLayer:
+class Function:
     """
-    Abstract Layer is a super class for all neural network layers
+    Function is the base class for all computations of the neural network
+    a function does not have any parameters that need to be optimized
     """
+    needs_optimizer = False
+
     def __init__(self):
         self.inputs = None
         self.outputs = None
@@ -24,13 +27,6 @@ class AbstractLayer:
         """
         raise NotImplementedError
 
-    def internal_update(self, parameter_deltas):
-        """
-        :param parameter_deltas: contains the delta of the parameters to be applied to each parameter
-        (same structure as in internal_backward but without the first element)
-        """
-        raise NotImplementedError
-
     def forward(self, graphs):
         self.inputs = tuple(graph.data for graph in graphs)
         self.outputs = self.internal_forward(self.inputs)
@@ -40,11 +36,9 @@ class AbstractLayer:
             return output_graphs[0]
         return output_graphs
 
-    def backward_and_update(self, gradients, optimizer):
+    def backward(self, gradients):
         gradients = self.internal_backward(self.inputs, (gradients,))
-        input_gradient = gradients[:len(self.inputs)]
-        parameter_gradients = gradients[len(self.inputs):]
-        if len(parameter_gradients) > 0:
-            parameter_deltas = optimizer.run_update_rule(parameter_gradients)
-            self.internal_update(parameter_deltas)
-        return input_gradient
+        return gradients
+
+    def __call__(self, *args):
+        return self.forward(args)

@@ -1,9 +1,9 @@
 import numpy as np
 
-from length.abstract_layer import AbstractLayer
+from length.function import Function
 
 
-class Softmax(AbstractLayer):
+class Softmax(Function):
     """
     Abstract Layer is a super class for all neural network layers
     """
@@ -30,9 +30,3 @@ class Softmax(AbstractLayer):
         assert x.shape == grad_x.shape
 
         return grad_x,
-
-    def internal_update(self, parameter_deltas):
-        pass
-
-    def __call__(self, x):
-        return self.forward((x,))

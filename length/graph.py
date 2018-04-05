@@ -36,7 +36,10 @@ class Graph:
             if candidate_layer.creator is None:
                 continue
 
-            gradients = candidate_layer.creator.backward_and_update(candidate_layer.grad, optimizer)
+            if candidate_layer.creator.needs_optimizer:
+                candidate_layer.creator.optimizer = optimizer
+
+            gradients = candidate_layer.creator.backward(candidate_layer.grad)
 
             for predecessor, gradient in zip(candidate_layer.predecessors, gradients):
                 predecessor.grad = gradient
