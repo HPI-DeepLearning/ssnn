@@ -21,3 +21,7 @@ class Sum(Function):
         grad_x = np.full_like(x, grad_in)
         assert grad_x.shape == x.shape
         return grad_x,
+
+
+def sum(x):
+    return Sum()(x)
