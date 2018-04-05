@@ -3,7 +3,7 @@ import numpy as np
 from length.layers.fully_connected import FullyConnected
 
 
-def test_forwards():
+def test_forward():
     layer = FullyConnected(50, 42)
     random = np.random.random((10, 50))
     result, = layer.internal_forward([random])
