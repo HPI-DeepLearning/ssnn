@@ -5,4 +5,4 @@ python:
 install:
   - pip install -r requirements.txt
 script:
-  - pytest
+  - pytest --ignore=length/tests/data_set_tests
