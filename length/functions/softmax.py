@@ -30,3 +30,7 @@ class Softmax(Function):
         assert x.shape == grad_x.shape
 
         return grad_x,
+
+
+def softmax(x):
+    return Softmax()(x)
