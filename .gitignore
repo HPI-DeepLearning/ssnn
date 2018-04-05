@@ -103,3 +103,9 @@ ENV/
 # PyCharm
 .idea
 .pytest_cache
+
+# data folder
+.data
+
+# test folder
+.temp
