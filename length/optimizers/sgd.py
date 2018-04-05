@@ -1,7 +1,10 @@
-from length.abstract_optimizer import AbstractOptimizer
+from length.optimizer import Optimizer
 
 
-class SGD(AbstractOptimizer):
+class SGD(Optimizer):
+    """
+    An optimizer that does plain Stochastic Gradient Descent
+    """
 
     def __init__(self, lr):
         self.lr = lr

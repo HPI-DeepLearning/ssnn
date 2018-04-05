@@ -1,8 +1,8 @@
 
 
-class AbstractInitializer:
+class Initializer:
     """
-    Abstractly initializers nothing
+    Base structure for all initializers
     """
     def __init__(self, *args, **kwargs):
         pass
