@@ -1,7 +1,6 @@
 import argparse
-import numpy as np
 
-from data_sets import Mnist
+from length.data_sets import Mnist
 from length.graph import Graph
 from length.layers.fully_connected import FullyConnected
 from length.functions.softmax_cross_entropy import SoftmaxCrossEntropy
