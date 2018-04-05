@@ -4,7 +4,7 @@ import gzip
 import struct
 from urllib.request import urlretrieve
 
-from data_set import DataSet, Batch
+from length.data_set import DataSet, Batch
 
 
 class MnistLike(DataSet):

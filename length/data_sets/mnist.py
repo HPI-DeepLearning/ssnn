@@ -1,4 +1,4 @@
-from data_sets.mnist_like import MnistLike
+from .mnist_like import MnistLike
 
 
 class Mnist(MnistLike):

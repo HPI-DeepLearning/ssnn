@@ -2,7 +2,7 @@ import os
 import shutil
 import pytest
 
-from data_sets import Mnist, FashionMnist
+from length.data_sets import Mnist, FashionMnist
 
 temp_folder = ".temp"
 
