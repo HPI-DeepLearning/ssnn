@@ -1,10 +1,10 @@
 import numpy as np
 
-from length.abstract_layer import AbstractLayer
-from length.layers.softmax import Softmax
+from length.function import Function
+from length.functions.softmax import Softmax
 
 
-class SoftmaxCrossEntropy(AbstractLayer):
+class SoftmaxCrossEntropy(Function):
 
     def __init__(self):
         super().__init__()
@@ -24,9 +24,3 @@ class SoftmaxCrossEntropy(AbstractLayer):
         grad_x[range(len(t)), t] -= 1
         grad_x *= grad_in[0] / t.size
         return grad_x, None
-
-    def internal_update(self, parameter_deltas):
-        pass
-
-    def __call__(self, x, labels):
-        return self.forward((x, labels))

@@ -3,7 +3,7 @@ import numpy as np
 
 from length.graph import Graph
 from length.layers.fully_connected import FullyConnected
-from length.layers.softmax_cross_entropy import SoftmaxCrossEntropy
+from length.functions.softmax_cross_entropy import SoftmaxCrossEntropy
 from length.optimizers.sgd import SGD
 
 
