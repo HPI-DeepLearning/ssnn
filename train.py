@@ -10,8 +10,6 @@ from length.optimizers.sgd import SGD
 
 def main(args):
     data_set = Mnist(64)
-    data = np.random.random((10, 784))
-    labels = np.zeros((10,), dtype=np.int32)
 
     fully_connected_1 = FullyConnected(784, 100)
     fully_connected_2 = FullyConnected(100, 100)
