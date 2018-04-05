@@ -7,4 +7,4 @@ class FashionMnist(MnistLike):
     """
 
     name = "fashion"
-    url = "fashion-mnist.s3-website.eu-central-1.amazonaws.com/"
+    url = "http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/"

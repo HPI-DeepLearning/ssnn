@@ -60,8 +60,7 @@ class MnistLike(DataSet):
         self.check_sanity()
 
     def download_files(self):
-        if not os.path.exists(self.path):
-            os.makedirs(self.path)
+        os.makedirs(self.path, exist_ok=True)
 
         urls = [self.data_url + f for f in self.basenames]
         for url, basename in zip(urls, self.basenames):
@@ -71,9 +70,11 @@ class MnistLike(DataSet):
                 urlretrieve(url, output_file_name)
 
     def load_files_into_memory(self):
-        for file, target in self.basenames.items():
-            file_path = os.path.join(self.path, file)
+        for file_name, target in self.basenames.items():
+            file_path = os.path.join(self.path, file_name)
             with gzip.open(file_path) as handle:
+                # see IDX file format specification:
+                # http://yann.lecun.com/exdb/mnist/
                 magic, = struct.unpack(">I", handle.read(4))
                 binary_magic = format(magic, '08X')
                 assert binary_magic[:4] == "0000"
@@ -84,7 +85,7 @@ class MnistLike(DataSet):
                 if dimensions > self.dimensions:
                     shape = shape[0:1] + (int(np.prod(shape[1:])),)
                 if dimensions < self.dimensions:
-                    shape = shape[0] + [1] + [shape[1:]]
+                    shape = shape[0:1] + (1,) + shape[1:]
                 setattr(self, target, data.reshape(shape))
 
     def check_sanity(self):

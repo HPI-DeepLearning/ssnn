@@ -31,7 +31,7 @@ def main(args):
 
             loss.backward(optimizer)
 
-            if iteration % 50 == 49:
+            if iteration % 50 == 0:
                 print(epoch, iteration, loss.data)
 
 
