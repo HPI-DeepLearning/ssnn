@@ -26,4 +26,4 @@ def test_sum_backward():
     f = lambda: sum_function.internal_forward((data,))
     numerical_gradients, = compute_numerical_gradient(f, (data,), (gradient,))
 
-    assert_allclose(computed_gradients, numerical_gradients)
+    assert_allclose(computed_gradients, numerical_gradients, atol=1e-4, rtol=1e-3)
