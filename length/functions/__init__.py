@@ -1,4 +1,5 @@
 from .accuracy import accuracy
+from .add import add
 from .relu import relu
 from .sigmoid import sigmoid
 from .softmax import softmax
