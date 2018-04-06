@@ -20,7 +20,7 @@ def test_adam_increasing_lr():
     learning_rate = 0.001
     optimizer = Adam(learning_rate)
 
-    gradients = np.random.random((10, 400)) / 100
+    gradients = np.random.random((10, 400))
 
     layer = Layer()
 
