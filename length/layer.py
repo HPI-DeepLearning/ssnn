@@ -23,6 +23,6 @@ class Layer(Function):
         input_gradient = gradients[:len(self.inputs)]
         parameter_gradients = gradients[len(self.inputs):]
         if len(parameter_gradients) > 0:
-            parameter_deltas = self.optimizer.run_update_rule(parameter_gradients)
+            parameter_deltas = self.optimizer.run_update_rule(parameter_gradients, self)
             self.internal_update(parameter_deltas)
         return input_gradient
