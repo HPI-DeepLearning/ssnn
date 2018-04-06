@@ -4,7 +4,7 @@ import length.functions as F
 
 from length.data_sets import Mnist
 from length.graph import Graph
-from length.layers.fully_connected import FullyConnected
+from length.layers import FullyConnected
 from length.optimizers import Adam
 
 
