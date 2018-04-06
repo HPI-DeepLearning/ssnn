@@ -10,5 +10,5 @@ def test_sgd():
 
     gradients = np.random.random((10, 400))
 
-    deltas, = optimizer.run_update_rule((gradients,))
+    deltas, = optimizer.run_update_rule((gradients,), None)
     assert_allclose(deltas, gradients * learning_rate)

@@ -9,6 +9,6 @@ class SGD(Optimizer):
     def __init__(self, lr):
         self.lr = lr
 
-    def run_update_rule(self, gradients):
+    def run_update_rule(self, gradients, _):
         param_deltas = [self.lr * gradient for gradient in gradients]
         return param_deltas
