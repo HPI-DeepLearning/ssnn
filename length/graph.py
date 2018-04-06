@@ -47,6 +47,13 @@ class Graph:
                     # the gradient flows to another layer (does not happen with loss layers)
                     add_candidate_layer(predecessor)
 
+    @property
+    def shape(self):
+        return self.data.shape
+
+    def __str__(self):
+        return str(self.shape)
+
 
 
 
