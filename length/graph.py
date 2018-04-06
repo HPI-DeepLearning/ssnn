@@ -18,7 +18,7 @@ class Graph:
 
         # if the size of the data array is 1, we are at the bottom of the computational graph
         # so, we are starting with a gradient of 1
-        if self.data.size == 1:
+        if self.data.size == 1 and self.grad is None:
             self.grad = np.ones_like(self.data)
 
         candidate_layers = []
