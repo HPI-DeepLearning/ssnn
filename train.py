@@ -24,15 +24,15 @@ def main(args):
                       format(epoch, model.loss.data[0], accuracy, iteration))
 
         print("running test set...")
-        average_accuracy = 0.0
-        average_loss = 0.0
+        sum_accuracy = 0.0
+        sum_loss = 0.0
         for iterations, batch in enumerate(data_set.test):
             model.forward(batch)
-            average_accuracy += F.accuracy(model.predictions, batch.labels).data
-            average_loss += model.loss.data[0]
+            sum_accuracy += F.accuracy(model.predictions, batch.labels).data
+            sum_loss += model.loss.data[0]
         nr_batches = iterations - 1
         print(" test: epoch: {:02d}, loss: {:05.2f}, accuracy {:.2f}".
-              format(epoch, average_loss / nr_batches, average_accuracy / nr_batches))
+              format(epoch, sum_loss / nr_batches, sum_accuracy / nr_batches))
 
 
 if __name__ == "__main__":

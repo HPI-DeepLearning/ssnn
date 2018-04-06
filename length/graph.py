@@ -53,8 +53,3 @@ class Graph:
 
     def __str__(self):
         return str(self.shape)
-
-
-
-
-
