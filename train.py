@@ -5,7 +5,7 @@ import length.functions as F
 from length.data_sets import Mnist
 from length.graph import Graph
 from length.layers.fully_connected import FullyConnected
-from length.optimizers import SGD
+from length.optimizers import Adam
 
 
 def main(args):
@@ -14,15 +14,15 @@ def main(args):
     fully_connected_1 = FullyConnected(784, 100)
     fully_connected_2 = FullyConnected(100, 100)
     fully_connected_3 = FullyConnected(100, 10)
-    optimizer = SGD(0.001)
+    optimizer = Adam(0.001)
 
     for epoch in range(args.num_epochs):
         for iteration, batch in enumerate(data_set.train):
             data_graph = Graph(batch.data)
             label_graph = Graph(batch.labels)
 
-            h = fully_connected_1(data_graph)
-            h = fully_connected_2(h)
+            h = F.relu(fully_connected_1(data_graph))
+            h = F.relu(fully_connected_2(h))
             h = fully_connected_3(h)
             loss = F.softmax_cross_entropy(h, label_graph)
 
