@@ -5,10 +5,7 @@ from length.functions import relu
 from length.functions.relu import Relu
 from length.graph import Graph
 from length.tests import gradient_checker
-
-
-def init(array):
-    return np.array(array, dtype=constants.DTYPE)
+from length.tests.utils import init
 
 
 def test_relu_forward():

@@ -1,12 +1,6 @@
-import numpy as np
-
-from length import constants
 from length.optimizers.sgd import SGD
 from length.tests import gradient_checker
-
-
-def init(array):
-    return np.array(array, dtype=constants.DTYPE)
+from length.tests.utils import init
 
 
 def test_sgd():

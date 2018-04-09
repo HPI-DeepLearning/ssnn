@@ -4,10 +4,7 @@ from length import constants
 from length.graph import Graph
 from length.layers import FullyConnected
 from length.tests import gradient_checker
-
-
-def init(array):
-    return np.array(array, dtype=constants.DTYPE)
+from length.tests.utils import init
 
 
 def fixed_case():
