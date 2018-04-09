@@ -25,7 +25,7 @@ class MeanSquaredError(Function):
     def internal_forward(self, inputs):
         x1, x2 = inputs
 
-        if x2.dtype == np.int32:
+        if np.issubdtype(x2.dtype, np.integer):
             x2 = self.create_one_hot(x2, x1.shape)
 
         self.difference = x1 - x2
@@ -38,7 +38,7 @@ class MeanSquaredError(Function):
         derived_value = 2 / x1.size * self.difference
         gradient = derived_value * gx
 
-        if x2.dtype == np.int32:
+        if np.issubdtype(x2.dtype, np.integer):
             # in case we used MSE as loss function, we won't propagate any gradients to the loss
             return gradient, None
 
