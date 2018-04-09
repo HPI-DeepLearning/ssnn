@@ -24,6 +24,8 @@ class Softmax(Function):
     Abstract Layer is a super class for all neural network layers
     """
 
+    name = "Softmax"
+
     def __init__(self):
         super().__init__()
         self.y = None

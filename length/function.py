@@ -7,6 +7,7 @@ class Function:
     a function does not have any parameters that need to be optimized
     """
     needs_optimizer = False
+    name = "Function"
 
     def __init__(self):
         self.inputs = None

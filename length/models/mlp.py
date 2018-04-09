@@ -14,7 +14,7 @@ class Mlp():
         self.loss = None
         self.predictions = None
 
-    def forward(self, batch):
+    def forward(self, batch, train=True):
         """
         This runs the forward pass with the model
         :param batch: the batch which should be forwarded

@@ -6,6 +6,8 @@ from length.functions.softmax import Softmax
 
 class Accuracy(Function):
 
+    name = "Accuracy"
+
     def __init__(self):
         super().__init__()
         self.softmax = Softmax()
