@@ -9,6 +9,8 @@ class Dropout(Function):
 
     def __init__(self, dropout_ratio):
         super().__init__()
+        if not 0.0 <= dropout_ratio < 1:
+            raise ValueError("dropout_ratio must be in range [0, 1)")
         self.dropout_ratio = dropout_ratio
         self.mask = None
 
