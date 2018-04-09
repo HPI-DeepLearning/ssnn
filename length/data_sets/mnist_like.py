@@ -4,6 +4,7 @@ import gzip
 import struct
 from urllib.request import urlretrieve
 
+from length.constants import DTYPE
 from length.data_set import DataSet, Batch
 from length.graph import Graph
 
@@ -15,11 +16,13 @@ class MnistLike(DataSet):
     name = None
     url = None
 
-    def __init__(self, batch_size, sample_dimensions=1, load_train=True, load_test=True, delay_loading=False, **kwargs):
+    def __init__(self, batch_size, sample_dimensions=1, load_train=True, load_test=True, delay_loading=False,
+                 scale=1.0, **kwargs):
         super().__init__(batch_size, **kwargs)
         self.data_url = self.url
         self.path = os.path.join(".data", self.name)
         self.sample_dimensions = sample_dimensions
+        self.scale = scale
 
         self.load_train = load_train
         self.load_test = load_test
@@ -82,7 +85,7 @@ class MnistLike(DataSet):
                 assert binary_magic[4:6] == "08"
                 dimensions = int(binary_magic[6:], 16)
                 shape = struct.unpack(">" + "I" * dimensions, handle.read(4 * dimensions))
-                data = np.fromstring(handle.read(), dtype=np.int8)
+                data = np.fromstring(handle.read(), dtype=np.uint8)
                 sample_dimensions = dimensions - 1
                 if sample_dimensions > 0:
                     # only do this if we are not reading a label file
@@ -90,6 +93,8 @@ class MnistLike(DataSet):
                         shape = shape[0:1] + (int(np.prod(shape[1:])),)
                     if sample_dimensions < self.sample_dimensions:
                         shape = shape[0:1] + (1,) + shape[1:]
+                    if self.scale is not None:
+                        data = data.astype(DTYPE) * self.scale / 255
                 setattr(self, target, data.reshape(shape))
 
     def check_sanity(self):
