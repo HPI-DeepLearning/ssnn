@@ -16,12 +16,12 @@ def test_relu_forward():
 
 def test_relu_backward():
     data = np.random.uniform(-1, 1, (5, 4)).astype(constants.DTYPE)
-    gradient = np.array([2], dtype=constants.DTYPE)
+    gradient = np.random.random(data.shape).astype(dtype=constants.DTYPE)
 
     data_graph = Graph(data)
     relu_function = Relu()
     relu_function(data_graph)
-    computed_gradients, = relu_function.backward((gradient,))
+    computed_gradients, = relu_function.backward(gradient)
 
     f = lambda: relu_function.internal_forward((data,))
     numerical_gradients, = gradient_checker.compute_numerical_gradient(f, (data,), (gradient,))

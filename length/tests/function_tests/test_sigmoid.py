@@ -17,12 +17,12 @@ def test_sigmoid_forward():
 
 def test_sigmoid_backward():
     data = np.random.uniform(-1, 1, (3, 2)).astype(constants.DTYPE)
-    gradient = np.array([2], dtype=constants.DTYPE)
+    gradient = np.random.random(data.shape).astype(constants.DTYPE)
 
     data_graph = Graph(data)
     sigmoid_function = Sigmoid()
     sigmoid_function(data_graph)
-    computed_gradients, = sigmoid_function.backward((gradient,))
+    computed_gradients, = sigmoid_function.backward(gradient)
 
     f = lambda: sigmoid_function.internal_forward((data,))
     numerical_gradients, = gradient_checker.compute_numerical_gradient(f, (data,), (gradient,))
