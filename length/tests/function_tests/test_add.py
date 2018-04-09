@@ -1,21 +1,21 @@
 import numpy as np
 
-from length import constants
 from length.functions.add import add, Add
 from length.graph import Graph
 from length.tests import gradient_checker
+from length.tests.utils import init
 
 
 def test_add_forward():
-    data = np.array([2], dtype=constants.DTYPE)
+    data = init([2])
 
     result = add(Graph(data), Graph(data))
     assert result.data == 4
 
 
 def test_add_backward():
-    data = np.array([2], dtype=constants.DTYPE)
-    gradient = np.array([1], dtype=constants.DTYPE)
+    data = init([2])
+    gradient = init([1])
 
     add_function = Add()
     computed_gradients_1, computed_gradients_2 = add_function.backward(gradient)

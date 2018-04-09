@@ -1,9 +1,8 @@
 import numpy as np
 
 import length.functions as F
-
-from length import constants
 from length.graph import Graph
+from length.tests.utils import init
 
 
 def calc_accuracy(data, labels):
@@ -12,8 +11,8 @@ def calc_accuracy(data, labels):
 
 
 def get_base_data():
-    first_element = np.array([-10, -10, -5, -4, 5, -1], dtype=constants.DTYPE)
-    second_element = np.array([-10, -10, 7, 3, 4, -1], dtype=constants.DTYPE)
+    first_element = init([-10, -10, -5, -4, 5, -1])
+    second_element = init([-10, -10, 7, 3, 4, -1])
     data = np.stack((first_element, second_element))
     labels = np.array([4, 0])
     return data, labels

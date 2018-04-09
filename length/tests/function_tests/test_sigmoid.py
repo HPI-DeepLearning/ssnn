@@ -5,10 +5,7 @@ from length.functions import sigmoid
 from length.functions.sigmoid import Sigmoid
 from length.graph import Graph
 from length.tests import gradient_checker
-
-
-def init(array):
-    return np.array(array, dtype=constants.DTYPE)
+from length.tests.utils import init
 
 
 def test_sigmoid_forward():

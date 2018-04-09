@@ -2,15 +2,11 @@ import math
 
 import numpy as np
 
-from length import constants
 from length.functions import mean_squared_error
 from length.functions.mean_squared_error import MeanSquaredError
 from length.graph import Graph
 from length.tests import gradient_checker
-
-
-def init(array):
-    return np.array(array, dtype=constants.DTYPE)
+from length.tests.utils import init
 
 
 def fixed_case(with_label=False):
