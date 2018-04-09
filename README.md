@@ -1,4 +1,4 @@
-# LENGTH ![build_state](https://travis-ci.org/HPI-DeepLearning/length.svg?branch=master)
+# LENGTH [![build_state](https://travis-ci.org/HPI-DeepLearning/length.svg?branch=master)](https://travis-ci.org/HPI-DeepLearning/length)
 Lightning-fast Extensible Neural-network Guarding The HPI
 
 # Installation
