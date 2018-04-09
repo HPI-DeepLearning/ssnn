@@ -8,6 +8,8 @@ class Sum(Function):
     Abstract Layer is a super class for all neural network layers
     """
 
+    name = "Sum"
+
     def __init__(self):
         super().__init__()
 

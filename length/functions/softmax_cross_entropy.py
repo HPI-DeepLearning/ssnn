@@ -6,6 +6,8 @@ from length.functions.softmax import log_softmax
 
 class SoftmaxCrossEntropy(Function):
 
+    name = "SoftmaxCrossEntropy"
+
     def __init__(self):
         super().__init__()
         self.y = None

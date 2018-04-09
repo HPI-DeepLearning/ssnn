@@ -10,6 +10,8 @@ class FullyConnected(Layer):
     Abstract Layer is a super class for all neural network layers
     """
 
+    name = "FullyConnected"
+
     def __init__(self, num_inputs, num_outputs, weight_init=Xavier()):
         super().__init__()
 

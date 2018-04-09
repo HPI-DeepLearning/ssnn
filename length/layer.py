@@ -6,6 +6,7 @@ class Layer(Function):
     Abstract Layer is a super class for all neural network layers
     """
     needs_optimizer = True
+    name = "Layer"
 
     def __init__(self):
         super().__init__()

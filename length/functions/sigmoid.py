@@ -8,6 +8,8 @@ class Sigmoid(Function):
     Abstract Layer is a super class for all neural network layers
     """
 
+    name = "Sigmoid"
+
     def __init__(self):
         super().__init__()
         self.output = None

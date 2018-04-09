@@ -8,6 +8,8 @@ class Relu(Function):
     The Relu Layer is a non-linear activation
     """
 
+    name = "ReLU"
+
     def __init__(self):
         super().__init__()
         self.output = None
