@@ -29,7 +29,10 @@ class Function:
         raise NotImplementedError
 
     def forward(self, graphs):
-        assert all(isinstance(graph, Graph) for graph in graphs)
+        requirement = "The input to forward must be a list/tuple which only includes Graph objects."
+        assert isinstance(graphs, (list, tuple)), requirement
+        assert all(isinstance(graph, Graph) for graph in graphs), requirement
+
         self.inputs = tuple(graph.data for graph in graphs)
         self.outputs = self.internal_forward(self.inputs)
 
