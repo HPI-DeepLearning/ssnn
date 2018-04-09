@@ -55,7 +55,7 @@ def test_fully_connected_backward():
     comp_grad_x, comp_grad_weight, comp_grad_bias = layer.internal_backward((data,), (gradient,))
 
     f = lambda: layer.internal_forward((data,))
-    num_grad_x, num_grad_weight, num_grad_bias = gradient_checker.compute_numerical_gradient(f, (data, layer.weights, layer.bias), (gradient,), eps=1e-2)
+    num_grad_x, num_grad_weight, num_grad_bias = gradient_checker.compute_numerical_gradient(f, (data, layer.weights.T, layer.bias), (gradient,), eps=1e-2)
 
     gradient_checker.assert_allclose(comp_grad_x, num_grad_x, atol=1e-4)
     gradient_checker.assert_allclose(comp_grad_weight, num_grad_weight, atol=1e-4)
