@@ -1,5 +1,8 @@
+import pytest
+
 from length.function import Function
 from length.functions import *
+from length.graph import Graph
 from length.layer import Layer
 
 
@@ -15,3 +18,27 @@ def test_function_no_optimizer_necessary():
     for sub_class in function_subclasses:
         assert sub_class.needs_optimizer is False
 
+
+def test_correct_wrong_input():
+    with pytest.raises(AssertionError) as info:
+        f = Function()
+        f.forward(15)
+    message = str(info.value)
+    assert "must be a list/tuple" in message
+    assert "only includes Graph objects" in message
+
+
+def test_correct_wrong_input_2():
+    with pytest.raises(AssertionError) as info:
+        f = Function()
+        f.forward([15])
+    message = str(info.value)
+    assert "must be a list/tuple" in message
+    assert "only includes Graph objects" in message
+
+
+def test_correct_input():
+    # this should only raise a not implemented error as internal_forward is not implemented
+    with pytest.raises(NotImplementedError):
+        f = Function()
+        f.forward([Graph(15)])
