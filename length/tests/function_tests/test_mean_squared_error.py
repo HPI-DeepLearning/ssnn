@@ -33,8 +33,8 @@ def fixed_case(with_label=False):
 
 
 def test_mean_squared_error_forward_zero_loss():
-    data = Graph(np.array([0, 0, 0, 1], dtype=constants.DTYPE))
-    label = Graph(np.array([0, 0, 0, 1], dtype=constants.DTYPE))
+    data = Graph(init([0, 0, 0, 1]))
+    label = Graph(init([0, 0, 0, 1]))
 
     mse = mean_squared_error(data, label)
 
@@ -57,7 +57,7 @@ def test_mean_squared_error_forward_int_input():
 
 def test_mean_squared_error_backward():
     data, data_2 = fixed_case()
-    gradients = np.array([2], dtype=constants.DTYPE)
+    gradients = init([2])
 
     data_1_graph = Graph(data)
     data_2_graph = Graph(data_2)
@@ -79,7 +79,7 @@ def test_mean_squared_error_backward():
 
 def test_mean_squared_error_backward_with_label():
     data, data_2 = fixed_case(with_label=True)
-    gradients = np.array([2], dtype=constants.DTYPE)
+    gradients = init([2])
 
     data_1_graph = Graph(data)
     data_2_graph = Graph(data_2)
