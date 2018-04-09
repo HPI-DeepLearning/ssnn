@@ -16,7 +16,7 @@ class SoftmaxCrossEntropy(Function):
         x, t = inputs
         self.y = log_softmax(x)
         loss = -self.y[range(len(t)), t].sum(keepdims=True) / t.size
-        return loss,
+        return loss[0],
 
     def internal_backward(self, inputs, gradients):
         x, t = inputs

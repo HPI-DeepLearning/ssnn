@@ -19,10 +19,10 @@ class Mlp():
         This runs the forward pass with the model
         :param batch: the batch which should be forwarded
         """
-        hidden = F.relu(self.fully_connected_1(batch.data))
-        hidden = F.relu(self.fully_connected_2(hidden))
+        hidden = self.fully_connected_1(batch.data)
+        hidden = self.fully_connected_2(hidden)
         self.predictions = self.fully_connected_3(hidden)
-        self.loss = F.softmax_cross_entropy(self.predictions, batch.labels)
+        self.loss = F.mean_squared_error(self.predictions, batch.labels)
 
     def backward(self, optimizer):
         """
