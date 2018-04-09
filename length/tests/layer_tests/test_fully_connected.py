@@ -7,7 +7,7 @@ from length.tests import gradient_checker
 
 
 def init(array):
-    return np.array(array).astype(constants.DTYPE)
+    return np.array(array, dtype=constants.DTYPE)
 
 
 def fixed_case():
@@ -55,7 +55,7 @@ def test_fully_connected_backward():
     comp_grad_x, comp_grad_weight, comp_grad_bias = layer.internal_backward((data,), (gradient,))
 
     f = lambda: layer.internal_forward((data,))
-    num_grad_x, num_grad_weight, num_grad_bias = gradient_checker.compute_numerical_gradient(f, (data, layer.weights.T, layer.bias), (gradient,), eps=1e-2)
+    num_grad_x, num_grad_weight, num_grad_bias = gradient_checker.compute_numerical_gradient(f, (data, layer._weights, layer.bias), (gradient,), eps=1e-2)
 
     gradient_checker.assert_allclose(comp_grad_x, num_grad_x, atol=1e-4)
     gradient_checker.assert_allclose(comp_grad_weight, num_grad_weight, atol=1e-4)

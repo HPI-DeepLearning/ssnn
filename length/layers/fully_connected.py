@@ -17,7 +17,7 @@ class FullyConnected(Layer):
 
         self._weights = np.zeros((num_outputs, num_inputs,), dtype=DTYPE)
         weight_init(self._weights)
-        self._bias = np.zeros((num_outputs,), dtype=DTYPE)
+        self.bias = np.zeros((num_outputs,), dtype=DTYPE)
 
     @property
     def weights(self):
@@ -27,17 +27,9 @@ class FullyConnected(Layer):
     def weights(self, value):
         self._weights = value.T
 
-    @property
-    def bias(self):
-        return self._bias
-
-    @bias.setter
-    def bias(self, value):
-        self._bias = value
-
     def internal_forward(self, inputs):
         x, = inputs
-        return np.dot(x, self._weights.T) + self._bias,
+        return np.dot(x, self._weights.T) + self.bias,
 
     def internal_backward(self, inputs, gradients):
         x, = inputs
@@ -48,11 +40,11 @@ class FullyConnected(Layer):
 
         assert grad_x.shape == x.shape
         assert grad_w.shape == self._weights.shape
-        assert grad_b.shape == self._bias.shape
+        assert grad_b.shape == self.bias.shape
 
         return grad_x, grad_w, grad_b
 
     def internal_update(self, parameter_deltas):
         delta_w, delta_b = parameter_deltas
         self._weights -= delta_w
-        self._bias -= delta_b
+        self.bias -= delta_b
