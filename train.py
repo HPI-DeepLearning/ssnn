@@ -27,7 +27,7 @@ def main(args):
         sum_accuracy = 0.0
         sum_loss = 0.0
         for iterations, batch in enumerate(data_set.test):
-            model.forward(batch)
+            model.forward(batch, train=False)
             sum_accuracy += F.accuracy(model.predictions, batch.labels).data
             sum_loss += model.loss.data[0]
         nr_batches = iterations - 1
