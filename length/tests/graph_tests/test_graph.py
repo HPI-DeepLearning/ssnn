@@ -1,11 +1,11 @@
 import numpy as np
 
 from length.data_set import Batch
-from length.models import Mlp
+from length.models import MLP
 
 
 def test_graph_backward_no_layers():
-    model = Mlp()
+    model = MLP()
     model.forward(Batch(
         np.random.random((10, 784)),
         np.random.randint(0, 10, 10)
