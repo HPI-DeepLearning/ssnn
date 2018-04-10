@@ -7,7 +7,7 @@ from length.functions import softmax_cross_entropy
 from length.functions.softmax_cross_entropy import SoftmaxCrossEntropy
 from length.graph import Graph
 from length.tests import gradient_checker
-from length.tests.utils import init
+from length.tests.utils import init, retry
 
 
 def get_data():
@@ -30,6 +30,7 @@ def test_softmax_cross_entropy_forward():
     assert math.isclose(float(softmax_loss.data), expected_loss, rel_tol=1e-4, abs_tol=1e-5)
 
 
+@retry(3)
 def test_softmax_cross_entropy_backward():
     data, labels = get_data()
     gradient = init([2])

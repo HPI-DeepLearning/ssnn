@@ -8,6 +8,7 @@ from length.functions import dropout
 from length.functions.dropout import Dropout
 from length.graph import Graph
 from length.tests import gradient_checker
+from length.tests.utils import retry
 
 
 def _dropout(input, function):
@@ -48,6 +49,7 @@ def test_dropout_forward_ratio_0_5():
     np.random.seed()
 
 
+@retry(3)
 def test_dropout_backward():
     data = get_data()
     gradient = np.random.random(data.shape).astype(constants.DTYPE)

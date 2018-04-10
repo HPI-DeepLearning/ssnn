@@ -4,6 +4,7 @@ from length import constants
 from length.functions.softmax import Softmax, softmax
 from length.graph import Graph
 from length.tests import gradient_checker
+from length.tests.utils import retry
 
 
 def test_softmax_forward():
@@ -18,6 +19,7 @@ def test_softmax_forward():
     gradient_checker.assert_allclose(output, expected_output)
 
 
+@retry(3)
 def test_softmax_backward():
     data = np.random.uniform(-1, 1, (3, 10)).astype(constants.DTYPE)
     gradient = np.random.uniform(-1, 1, (3, 10)).astype(constants.DTYPE)

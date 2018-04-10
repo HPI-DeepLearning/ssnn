@@ -5,7 +5,7 @@ from length.functions import relu
 from length.functions.relu import Relu
 from length.graph import Graph
 from length.tests import gradient_checker
-from length.tests.utils import init
+from length.tests.utils import init, retry
 
 
 def test_relu_forward():
@@ -29,6 +29,7 @@ def test_relu_forward():
     np.testing.assert_allclose(relu_output.data, desired)
 
 
+@retry(3)
 def test_relu_backward():
     data = np.random.uniform(-1, 1, (5, 4)).astype(constants.DTYPE)
     gradient = np.random.random(data.shape).astype(dtype=constants.DTYPE)

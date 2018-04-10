@@ -6,7 +6,7 @@ from length.functions import mean_squared_error
 from length.functions.mean_squared_error import MeanSquaredError
 from length.graph import Graph
 from length.tests import gradient_checker
-from length.tests.utils import init
+from length.tests.utils import init, retry
 
 
 def fixed_case(with_label=False):
@@ -51,6 +51,7 @@ def test_mean_squared_error_forward_int_input():
     assert math.isclose(float(mse.data), 0.583, abs_tol=1e-3)
 
 
+@retry(3)
 def test_mean_squared_error_backward():
     data, data_2 = fixed_case()
     gradients = init([2])
@@ -73,6 +74,7 @@ def test_mean_squared_error_backward():
     gradient_checker.assert_allclose(computed_gradient_2, numerical_gradient_2)
 
 
+@retry(3)
 def test_mean_squared_error_backward_with_label():
     data, data_2 = fixed_case(with_label=True)
     gradients = init([2])
