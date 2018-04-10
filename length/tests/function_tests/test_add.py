@@ -3,7 +3,7 @@ import numpy as np
 from length.functions.add import add, Add
 from length.graph import Graph
 from length.tests import gradient_checker
-from length.tests.utils import init
+from length.tests.utils import init, retry
 
 
 def test_add_forward():
@@ -13,6 +13,7 @@ def test_add_forward():
     assert result.data == 4
 
 
+@retry(3)
 def test_add_backward():
     data = init([2])
     gradient = init([1])

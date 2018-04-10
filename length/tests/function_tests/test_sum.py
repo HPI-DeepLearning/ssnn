@@ -4,7 +4,7 @@ from length import constants
 from length.functions.sum import Sum, sum
 from length.graph import Graph
 from length.tests import gradient_checker
-from length.tests.utils import init
+from length.tests.utils import init, retry
 
 
 def test_sum_forward():
@@ -14,6 +14,7 @@ def test_sum_forward():
     np.testing.assert_allclose(sum_output.data, data.sum())
 
 
+@retry(3)
 def test_sum_backward():
     data = np.random.uniform(-1, 1, (3, 2)).astype(constants.DTYPE)
     gradient = init([2])

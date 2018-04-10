@@ -4,7 +4,7 @@ from length import constants
 from length.graph import Graph
 from length.layers import FullyConnected
 from length.tests import gradient_checker
-from length.tests.utils import init
+from length.tests.utils import init, retry
 
 
 def fixed_case():
@@ -43,6 +43,7 @@ def test_fully_connected_forward():
     gradient_checker.assert_allclose(layer_output.data, expected)
 
 
+@retry(3)
 def test_fully_connected_backward():
     data = np.random.uniform(-1, 1, (10, 50)).astype(constants.DTYPE)
 

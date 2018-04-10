@@ -5,7 +5,7 @@ from length.functions import sigmoid
 from length.functions.sigmoid import Sigmoid
 from length.graph import Graph
 from length.tests import gradient_checker
-from length.tests.utils import init
+from length.tests.utils import init, retry
 
 
 def test_sigmoid_forward():
@@ -25,6 +25,7 @@ def test_sigmoid_forward():
     np.testing.assert_allclose(sigmoid_output.data, desired)
 
 
+@retry(3)
 def test_sigmoid_backward():
     data = np.random.uniform(-1, 1, (3, 2)).astype(constants.DTYPE)
     gradient = np.random.random(data.shape).astype(constants.DTYPE)
