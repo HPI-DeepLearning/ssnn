@@ -7,7 +7,6 @@ class Relu(Function):
     """
     The Relu Layer is a non-linear activation
     """
-
     name = "ReLU"
 
     def __init__(self):
@@ -30,4 +29,10 @@ class Relu(Function):
 
 
 def relu(x):
+    """
+    This function computes the element-wise ReLU activation function (https://en.wikipedia.org/wiki/Rectifier_(neural_networks))
+    on a given input vector x.
+    :param x: the input vector
+    :return: a rectified version of the input vector
+    """
     return Relu()(x)

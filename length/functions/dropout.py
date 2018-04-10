@@ -4,7 +4,6 @@ from length.function import Function
 
 
 class Dropout(Function):
-
     name = "Dropout"
 
     def __init__(self, dropout_ratio):
@@ -27,6 +26,14 @@ class Dropout(Function):
 
 
 def dropout(x, dropout_ratio=0.5, train=True):
+    """
+    This function implements dropout (http://www.jmlr.org/papers/volume15/srivastava14a/srivastava14a.pdf),
+    a regularization method for neural networks.
+    :param x: the input vector where parts shall be dropped
+    :param dropout_ratio: the ratio of which to perform dropout
+    :param train: whether we are currently running in train or testing mode (default: True)
+    :return: a vector with a portion of elements zeroed out, this portion is defined by `dropout_ratio`.
+    """
     if train:
         return Dropout(dropout_ratio)(x)
     return x

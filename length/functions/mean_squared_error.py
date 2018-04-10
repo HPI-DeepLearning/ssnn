@@ -6,8 +6,8 @@ from length.function import Function
 
 class MeanSquaredError(Function):
     """
-        This function calculates the Mean Squared Error between two given vectors, as described in
-        https://en.wikipedia.org/wiki/Mean_squared_error
+    This function calculates the Mean Squared Error between two given vectors, as described in
+    https://en.wikipedia.org/wiki/Mean_squared_error
     """
     name = "MeanSquaredError"
 

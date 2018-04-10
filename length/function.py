@@ -24,7 +24,7 @@ class Function:
         """
         :param inputs: is a tuple of numpy arrays
         :param gradients: is a tuple of numpy arrays
-        :returns gradients as tuple of numpy arrays (first element is gradient with respect to input)
+        :returns gradients as tuple of numpy arrays (first elements are gradients with respect to the inputs)
         """
         raise NotImplementedError
 
