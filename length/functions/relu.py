@@ -11,21 +11,18 @@ class Relu(Function):
 
     def __init__(self):
         super().__init__()
-        self.output = None
+        # TODO add more initialization if necessary
 
     def internal_forward(self, inputs):
         x, = inputs
-        self.output = np.maximum(x, np.zeros_like(x))
-        return self.output,
+        # TODO: calculate forward pass of ReLU function
+        return x,
 
     def internal_backward(self, inputs, gradients):
         x, = inputs
         grad_in, = gradients
-        copy = self.output.copy()
-        copy[copy > 0] = 1
-        grad_x = np.multiply(grad_in, copy)
-        assert grad_x.shape == x.shape
-        return grad_x,
+        # TODO calculate gradients of ReLU function with respect to the input
+        return grad_in,
 
 
 def relu(x):
