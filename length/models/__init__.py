@@ -1,1 +1,1 @@
-from .mlp import Mlp
+from .mlp import MLP

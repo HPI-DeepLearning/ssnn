@@ -2,7 +2,7 @@ import os
 import shutil
 import pytest
 
-from length.data_sets import Mnist, FashionMnist
+from length.data_sets import MNIST, FashionMNIST
 
 temp_folder = ".temp"
 
@@ -16,7 +16,7 @@ def cleanup():
 
 
 def test_mnist_downloading(cleanup):
-    data_set = Mnist(10, delay_loading=True)
+    data_set = MNIST(10, delay_loading=True)
     data_set.path = temp_folder
     data_set.download_files()
 
@@ -32,7 +32,7 @@ def test_mnist_downloading(cleanup):
 
 
 def test_fashion_mnist_downloading(cleanup):
-    data_set = FashionMnist(10, delay_loading=True)
+    data_set = FashionMNIST(10, delay_loading=True)
     data_set.path = temp_folder
     data_set.download_files()
 

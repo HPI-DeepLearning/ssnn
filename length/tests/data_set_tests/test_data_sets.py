@@ -3,14 +3,14 @@ import os
 from PIL import Image
 
 from length.constants import DTYPE
-from length.data_sets import Mnist
+from length.data_sets import MNIST
 
 
 def test_mnist_with_scale():
     with Image.open(os.path.join("length", "tests", "data", "5.png")) as image:
         scale = 2.0
         expected = np.array(image) * scale / 255
-        data_set = Mnist(1, sample_dimensions=2, scale=scale)
+        data_set = MNIST(1, sample_dimensions=2, scale=scale)
         for batch in data_set.train:
             first_sample, first_label = batch.data.data[0], batch.labels.data[0]
             np.testing.assert_almost_equal(expected, first_sample)
@@ -21,7 +21,7 @@ def test_mnist_with_scale():
 def test_mnist_without_scale():
     with Image.open(os.path.join("length", "tests", "data", "5.png")) as image:
         expected = np.array(image)
-        data_set = Mnist(1, sample_dimensions=2, scale=None)
+        data_set = MNIST(1, sample_dimensions=2, scale=None)
         for batch in data_set.train:
             first_sample, first_label = batch.data.data[0], batch.labels.data[0]
             np.testing.assert_equal(expected, first_sample)
@@ -30,7 +30,7 @@ def test_mnist_without_scale():
 
 
 def test_mnist_reading_test():
-    data_set = Mnist(100)
+    data_set = MNIST(100)
     iterations = 0
     for batch in data_set.train:
         assert (100, 784) == batch.data.shape
@@ -42,7 +42,7 @@ def test_mnist_reading_test():
 
 
 def test_mnist_reading_train():
-    data_set = Mnist(100)
+    data_set = MNIST(100)
     iterations = 0
     for batch in data_set.test:
         assert (100, 784) == batch.data.shape
@@ -54,7 +54,7 @@ def test_mnist_reading_train():
 
 
 def test_mnist_reading_2_dimensions():
-    data_set = Mnist(100, 2)
+    data_set = MNIST(100, 2)
     iterations = 0
     for batch in data_set.train:
         assert (100, 28, 28) == batch.data.shape
@@ -66,7 +66,7 @@ def test_mnist_reading_2_dimensions():
 
 
 def test_mnist_reading_3_dimensions():
-    data_set = Mnist(100, 3)
+    data_set = MNIST(100, 3)
     iterations = 0
     for batch in data_set.train:
         assert (100, 1, 28, 28) == batch.data.shape

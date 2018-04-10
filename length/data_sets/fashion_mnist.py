@@ -1,7 +1,7 @@
-from .mnist_like import MnistLike
+from .mnist_like import MNISTLike
 
 
-class FashionMnist(MnistLike):
+class FashionMNIST(MNISTLike):
     """
     The replacement of the hand-written digit data set with fashion items
     """

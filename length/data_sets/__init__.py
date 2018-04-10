@@ -1,2 +1,2 @@
-from .fashion_mnist import FashionMnist
-from .mnist import Mnist
+from .fashion_mnist import FashionMNIST
+from .mnist import MNIST

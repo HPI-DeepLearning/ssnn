@@ -1,7 +1,7 @@
-from .mnist_like import MnistLike
+from .mnist_like import MNISTLike
 
 
-class Mnist(MnistLike):
+class MNIST(MNISTLike):
     """
     The hand-written digit data set
     """
