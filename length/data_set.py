@@ -1,7 +1,10 @@
-from collections import namedtuple
+from length.graph import Graph
 
 
-Batch = namedtuple("Batch", ("data", "labels"))
+class Batch:
+    def __init__(self, data, labels):
+        self.data = Graph(data, name="input[data]")
+        self.labels = Graph(labels, name="input[labels]")
 
 
 class DataSet:

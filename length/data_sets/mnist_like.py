@@ -56,7 +56,7 @@ class MnistLike(DataSet):
         for i in range(len(label_array) // self.batch_size):
             data = data_array[self.batch_size * i:self.batch_size * (i + 1)]
             labels = label_array[self.batch_size * i:self.batch_size * (i + 1)]
-            yield Batch(Graph(data), Graph(labels))
+            yield Batch(data, labels)
 
     def prepare(self):
         self.download_files()

@@ -7,11 +7,12 @@ class Graph:
     """
     Graph stores data and computational history of the neural network
     """
-    def __init__(self, data, predecessors=None, creator=None):
+    def __init__(self, data, predecessors=None, creator=None, name=None):
         self.predecessors = predecessors
         self.data = data
         self.creator = creator
         self.grad = None
+        self.name = name
 
     def backward(self, optimizer):
         if self.creator is None:
@@ -58,4 +59,34 @@ class Graph:
         return self.data.dtype
 
     def __repr__(self):
-        return getattr(self.creator, 'name', 'input') + " {}".format(self.shape)
+        name = getattr(self.creator, 'name', 'input') if self.name is None else self.name
+        return "{} {}".format(name, self.shape)
+
+    def visualize(self):
+        print(self._visualization_as_str())
+
+    def _visualization_as_str(self):
+        layers = [self]
+
+        i = 0
+        prev_id = {self: -1}
+        while i < len(layers):
+            layer = layers[i]
+            i += 1
+            if layer.creator is None:
+                continue
+
+            for predecessor in layer.predecessors:
+                if predecessor not in layers:
+                    layers.append(predecessor)
+                    prev_id[predecessor] = i - 1
+
+        table = [(i - j, repr(layer), i - prev_id[layer]) for j, layer in enumerate(layers)]
+        # append header last, since we print in reversed order
+        table.append(("id", "layer", "next"))
+
+        widths = [str(max(len(str(row[column])) for row in table)) for column in range(3)]
+        template = "{:>" + widths[0] + "} | {:<" + widths[1] + "} | {:" + widths[2] + "}"
+
+        lines = [template.format(*row) for row in table]
+        return "\n".join(reversed(lines))
