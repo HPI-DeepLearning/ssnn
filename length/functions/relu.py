@@ -11,7 +11,7 @@ class Relu(Function):
 
     def __init__(self):
         super().__init__()
-        # TODO add more initialization if necessary
+        # TODO: add more initialization if necessary
 
     def internal_forward(self, inputs):
         x, = inputs
@@ -21,7 +21,7 @@ class Relu(Function):
     def internal_backward(self, inputs, gradients):
         x, = inputs
         grad_in, = gradients
-        # TODO calculate gradients of ReLU function with respect to the input
+        # TODO: calculate gradients of ReLU function with respect to the input
         return grad_in,
 
 

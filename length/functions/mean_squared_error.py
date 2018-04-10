@@ -17,7 +17,7 @@ class MeanSquaredError(Function):
     @staticmethod
     def create_one_hot(data, shape):
         assert len(shape) == 2, "Providing integers as second input to MSE only works with two dimensional input vectors"
-        # TODO create a one-hot representation out of the given label vector
+        # TODO: create a one-hot representation out of the given label vector
         # Example: assume input is the following: [2, 3], and shape is (2, 4)
         # the resulting vector should look like this:
         # result = [[0, 0, 1, 0], [0, 0, 0, 1]]
@@ -29,14 +29,15 @@ class MeanSquaredError(Function):
         if np.issubdtype(x2.dtype, np.integer):
             x2 = self.create_one_hot(x2, x1.shape)
 
-        # TODO calculate the mean squared error of x1 and x2
+        # TODO: calculate the mean squared error of x1 and x2
+        error = 0.0
 
-        return x1
+        return error
 
     def internal_backward(self, inputs, gradients):
         x1, x2 = inputs
         gx, = gradients
-        # TODO calculate the gradients of this function with respect to its inputs
+        # TODO: calculate the gradients of this function with respect to its inputs
         gradient_1 = np.zeros_like(x1)
         gradient_2 = np.zeros_like(x2)
 
