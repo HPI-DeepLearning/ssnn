@@ -85,9 +85,9 @@ class MNISTLike(DataSet):
                 dimensions = int(binary_magic[6:], 16)
                 shape = struct.unpack(">" + "I" * dimensions, handle.read(4 * dimensions))
                 data = np.fromstring(handle.read(), dtype=np.uint8)
-                sample_dimensions = dimensions - 1
-                if sample_dimensions > 0:
-                    # only do this if we are not reading a label file
+                if "images" in target:
+                    # only do this if we are reading an image file
+                    sample_dimensions = dimensions - 1
                     if sample_dimensions > self.sample_dimensions:
                         shape = shape[0:1] + (int(np.prod(shape[1:])),)
                     if sample_dimensions < self.sample_dimensions:
