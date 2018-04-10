@@ -53,5 +53,9 @@ class Graph:
     def shape(self):
         return self.data.shape
 
+    @property
+    def dtype(self):
+        return self.data.dtype
+
     def __repr__(self):
         return getattr(self.creator, 'name', 'input') + " {}".format(self.shape)
