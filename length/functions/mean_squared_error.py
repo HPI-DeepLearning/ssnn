@@ -1,6 +1,5 @@
 import numpy as np
 
-from length import constants
 from length.function import Function
 
 
@@ -13,14 +12,16 @@ class MeanSquaredError(Function):
 
     def __init__(self):
         super().__init__()
-        self.difference = None
+        # TODO: add more initialization if necessary
 
     @staticmethod
     def create_one_hot(data, shape):
         assert len(shape) == 2, "Providing integers as second input to MSE only works with two dimensional input vectors"
-        data_container = np.zeros(shape, dtype=constants.DTYPE)
-        data_container[np.arange(len(data)), data] = 1
-        return data_container
+        # TODO create a one-hot representation out of the given label vector
+        # Example: assume input is the following: [2, 3], and shape is (2, 4)
+        # the resulting vector should look like this:
+        # result = [[0, 0, 1, 0], [0, 0, 0, 1]]
+        return None
 
     def internal_forward(self, inputs):
         x1, x2 = inputs
@@ -28,21 +29,22 @@ class MeanSquaredError(Function):
         if np.issubdtype(x2.dtype, np.integer):
             x2 = self.create_one_hot(x2, x1.shape)
 
-        self.difference = x1 - x2
-        squared_sum = np.sum(np.square(self.difference))
-        return (squared_sum / self.difference.size).astype(constants.DTYPE),
+        # TODO calculate the mean squared error of x1 and x2
+
+        return x1
 
     def internal_backward(self, inputs, gradients):
         x1, x2 = inputs
         gx, = gradients
-        derived_value = 2 / x1.size * self.difference
-        gradient = derived_value * gx
+        # TODO calculate the gradients of this function with respect to its inputs
+        gradient_1 = np.zeros_like(x1)
+        gradient_2 = np.zeros_like(x2)
 
         if np.issubdtype(x2.dtype, np.integer):
-            # in case we used MSE as loss function, we won't propagate any gradients to the loss
-            return gradient, None
+            # in case we used MSE as loss function, we won't propagate any gradients to the labels
+            return gradient_1, None
 
-        return gradient, -gradient
+        return gradient_1, gradient_2
 
 
 def mean_squared_error(input_1, input_2):
