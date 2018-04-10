@@ -14,5 +14,5 @@ class Xavier(Initializer):
         self.scale = scale
 
     def __call__(self, array):
-        s = self.scale * np.sqrt(2. / (array.shape[0] + array.shape[1]))
-        array[...] = np.random.normal(loc=0.0, scale=s, size=array.shape)
+        # TODO: overwrite values in array with a correctly initialized one
+        array[...] = np.zeros_like(array)
