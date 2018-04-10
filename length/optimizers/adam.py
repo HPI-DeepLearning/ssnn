@@ -18,9 +18,9 @@ class Adam(Optimizer):
         self.beta2 = beta2
         self.eps = eps
 
-        # TODO add more initialization code
+        # TODO: add more initialization code
 
     def run_update_rule(self, gradients, layer):
-        # TODO implement Adam update rule as specified in https://arxiv.org/abs/1412.6980
+        # TODO: implement Adam update rule as specified in https://arxiv.org/abs/1412.6980
         param_deltas = [np.zeros_like(g) for g in gradients]
         return param_deltas
