@@ -2,7 +2,7 @@ from length.layers import FullyConnected
 import length.functions as F
 
 
-class Mlp():
+class MLP:
     """
     Simple network with two fully connected layers
     """

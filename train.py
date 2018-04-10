@@ -2,15 +2,15 @@ import argparse
 
 import length.functions as F
 
-from length.data_sets import Mnist
-from length.models import Mlp
+from length.data_sets import MNIST
+from length.models import MLP
 from length.optimizers import Adam
 
 
 def main(args):
-    data_set = Mnist(64)
+    data_set = MNIST(64)
 
-    model = Mlp()
+    model = MLP()
     optimizer = Adam(0.001)
 
     for epoch in range(args.num_epochs):

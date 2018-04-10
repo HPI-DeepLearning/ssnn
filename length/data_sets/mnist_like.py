@@ -6,10 +6,9 @@ from urllib.request import urlretrieve
 
 from length.constants import DTYPE
 from length.data_set import DataSet, Batch
-from length.graph import Graph
 
 
-class MnistLike(DataSet):
+class MNISTLike(DataSet):
     """
     Class for all data sets which are in the same format as MNIST
     """

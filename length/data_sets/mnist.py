@@ -1,10 +1,10 @@
-from .mnist_like import MnistLike
+from .mnist_like import MNISTLike
 
 
-class Mnist(MnistLike):
+class MNIST(MNISTLike):
     """
     The hand-written digit data set
     """
 
-    name = "mnist"
+    name = "MNIST"
     url = "http://yann.lecun.com/exdb/mnist/"

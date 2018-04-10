@@ -1,10 +1,10 @@
-from .mnist_like import MnistLike
+from .mnist_like import MNISTLike
 
 
-class FashionMnist(MnistLike):
+class FashionMNIST(MNISTLike):
     """
     The replacement of the hand-written digit data set with fashion items
     """
 
-    name = "fashion"
+    name = "fashionMNIST"
     url = "http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/"
