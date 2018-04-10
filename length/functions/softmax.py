@@ -20,10 +20,6 @@ def log_softmax(x):
 
 
 class Softmax(Function):
-    """
-    Abstract Layer is a super class for all neural network layers
-    """
-
     name = "Softmax"
 
     def __init__(self):
@@ -49,4 +45,11 @@ class Softmax(Function):
 
 
 def softmax(x):
+    """
+    The softmax function takes a two-dimensional input (of shape BxN) and computes the softmax function
+    (https://en.wikipedia.org/wiki/Softmax_function)on the last dimension of this input. The result is a two-dimensional
+    vector (of shape BxN) that contains a probability distribution for each sample b of the batch with batch size B.
+    :param x: the two-dimensional input vector to calculate the softmax on
+    :return: a two-dimensional vector with softmax applied to the last dimension
+    """
     return Softmax()(x)

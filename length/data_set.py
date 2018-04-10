@@ -18,8 +18,14 @@ class DataSet:
 
     @property
     def test(self):
+        """
+        :return: an iterator over the test set.
+        """
         raise NotImplementedError()
 
     @property
     def train(self):
+        """
+        :return: an iterator over the train set.
+        """
         raise NotImplementedError()

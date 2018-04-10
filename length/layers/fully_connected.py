@@ -7,9 +7,10 @@ from length.initializers.xavier import Xavier
 
 class FullyConnected(Layer):
     """
-    Abstract Layer is a super class for all neural network layers
+    The FullyConnected Layer is one of the base building blocks of a neural network. It computes a weighted sum
+    over the input, using a weight matrix. It furthermore applies a bias term to this weighted sum to allow linear
+    shifts of the computed values.
     """
-
     name = "FullyConnected"
 
     def __init__(self, num_inputs, num_outputs, weight_init=Xavier()):

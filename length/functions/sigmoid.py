@@ -4,10 +4,6 @@ from length.function import Function
 
 
 class Sigmoid(Function):
-    """
-    Abstract Layer is a super class for all neural network layers
-    """
-
     name = "Sigmoid"
 
     def __init__(self):
@@ -28,4 +24,10 @@ class Sigmoid(Function):
 
 
 def sigmoid(x):
+    """
+    This function computes the element-wise sigmoid activation function (https://en.wikipedia.org/wiki/Sigmoid_function)
+    on a given input x.
+    :param x: the vector, where the activation function shall be applied to
+    :return: a vector with the sigmoid activation applied
+    """
     return Sigmoid()(x)

@@ -5,7 +5,6 @@ from length.functions.softmax import log_softmax
 
 
 class SoftmaxCrossEntropy(Function):
-
     name = "SoftmaxCrossEntropy"
 
     def __init__(self):
@@ -28,4 +27,12 @@ class SoftmaxCrossEntropy(Function):
 
 
 def softmax_cross_entropy(x, t):
+    """
+    This function calculates the softmax cross entropy loss
+    (https://cs231n.github.io/linear-classify/#softmax-classifier)between a given two-dimensional input vector `x` and a
+    one-dimensional int-vector `t` that represents the groundtruth labels for classification.
+    :param x: the input vector that is to be used to calculate the loss
+    :param t: the groundtruth labels for the batch
+    :return: the cross entropy loss of input and groundtruth labels
+    """
     return SoftmaxCrossEntropy()(x, t)

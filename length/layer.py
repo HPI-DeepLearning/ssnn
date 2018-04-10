@@ -3,7 +3,8 @@ from length.function import Function
 
 class Layer(Function):
     """
-    Abstract Layer is a super class for all neural network layers
+    Abstract Layer is a super class for all neural network layers. A layer behaves like a function, but also
+    has to keep track of internal parameters (like weights and biases) that need to be optimized.
     """
     needs_optimizer = True
     name = "Layer"

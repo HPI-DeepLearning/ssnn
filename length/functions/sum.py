@@ -4,10 +4,6 @@ from length.function import Function
 
 
 class Sum(Function):
-    """
-    Abstract Layer is a super class for all neural network layers
-    """
-
     name = "Sum"
 
     def __init__(self):
@@ -26,4 +22,9 @@ class Sum(Function):
 
 
 def sum(x):
+    """
+    This function calculates the sum of all elements in a given vector
+    :param x: the vector that is to be summed.
+    :return: the sum of all elements in the input vector
+    """
     return Sum()(x)
