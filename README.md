@@ -1,6 +1,8 @@
-# SSNN - Super Simple Neural Network [![build_state](https://travis-ci.org/HPI-DeepLearning/ssnn.svg?branch=master)](https://travis-ci.org/HPI-DeepLearning/ssnn)
+# LENGTH - Lightning-fast Extensible Neural-network Guarding The HPI
 
 A simple neural network implementation that could be used for education.
+But beware! Some important parts of the code are missing :wink: and you
+have to fill the blanks!
 
 # Installation
 
